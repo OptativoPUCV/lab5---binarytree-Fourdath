@@ -87,50 +87,41 @@ TreeNode * minimum(TreeNode * x) {
     return x;
 }
 
-void removeNode(TreeMap * tree, TreeNode* node) {
+void removeNode(TreeMap* tree, TreeNode* node) {
 
     if (node->left == NULL && node->right == NULL) {
-        if (node == tree->root) {
-            tree->root = NULL;
-        } else {
-            if (node->parent->left == node) {
+        if (node->parent != NULL) {
+            if (node == node->parent->left)
                 node->parent->left = NULL;
-            } else {
+            else
                 node->parent->right = NULL;
-            }
+        } else {
+            tree->root = NULL;
         }
+        free(node->pair);
         free(node);
+        return;
     }
-
-    else if (node->left == NULL || node->right == NULL) {
-        TreeNode* child;
-        if (node->left != NULL) {
-            child = node->left;
-        } else {
-            child = node->right;
-        }
-        if (node == tree->root) {
-            tree->root = child;
-            child->parent = NULL;
-        } else {
-            if (node->parent->left == node) {
+    if (node->left == NULL || node->right == NULL) {
+        TreeNode* child = node->left != NULL ? node->left : node->right;
+        child->parent = node->parent;
+        if (node->parent != NULL) {
+            if (node == node->parent->left)
                 node->parent->left = child;
-            } else {
+            else
                 node->parent->right = child;
-            }
-            child->parent = node->parent;
+        } else {
+            tree->root = child;
         }
+        free(node->pair);
         free(node);
+        return;
     }
-     else {
-        TreeNode* min = minimum(node->right);
-        Pair* temp = node->data;
-        node->data = min->data;
-        min->data = temp;
-        removeNode(tree, min);
-    }
-    free(node);
+    TreeNode* min = minimum(node->right);
+    node->pair = min->pair;
+    removeNode(tree, min);
 }
+
 
 void eraseTreeMap(TreeMap * tree, void* key){
     if (tree == NULL || tree->root == NULL) return;
