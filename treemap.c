@@ -125,12 +125,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     else {
         TreeNode* min = minimum(node->right);
-        node->key = min->key;
-        node->value = min->value;
+        Pair* temp = node->data;
+        node->data = min->data;
+        min->data = temp;
         removeNode(tree, min);
     }
 }
-
 
 
 void eraseTreeMap(TreeMap * tree, void* key){
