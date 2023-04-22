@@ -75,3 +75,22 @@ Sat 22 Apr 2023 06:16:25 AM UTC:
  1 file changed, 3 insertions(+), 5 deletions(-)
  tests:  0|0
 0718869
+Sat 22 Apr 2023 06:17:44 AM UTC: 
+ treemap.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:127:26: error: ‘TreeNode’ has no member named ‘data’
+  127 |         Pair* temp = node->data;
+      |                          ^~
+treemap.c:128:13: error: ‘TreeNode’ has no member named ‘data’
+  128 |         node->data = min->data;
+      |             ^~
+treemap.c:128:25: error: ‘TreeNode’ has no member named ‘data’
+  128 |         node->data = min->data;
+      |                         ^~
+treemap.c:129:12: error: ‘TreeNode’ has no member named ‘data’
+  129 |         min->data = temp;
+      |            ^~
+Compilation failed
+748776d
