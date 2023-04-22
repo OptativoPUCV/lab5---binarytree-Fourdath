@@ -123,13 +123,11 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         free(node);
     }
 
-    else {
-        TreeNode* min = minimum(node->right);
-        Pair* temp = node->data;
-        node->data = min->data;
-        min->data = temp;
-        removeNode(tree, min);
-    }
+    TreeNode* min = minimum(node->right);
+    Pair* temp = node->pair;
+    node->pair = min->pair;
+    min->pair = temp;
+    removeNode(tree, min);
 }
 
 

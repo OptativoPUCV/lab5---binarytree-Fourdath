@@ -70,3 +70,8 @@ treemap.c:130:12: error: ‘TreeNode’ has no member named ‘data’
       |            ^~
 Compilation failed
 a639190
+Sat 22 Apr 2023 06:16:25 AM UTC: 
+ treemap.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+ tests:  0|0
+0718869
